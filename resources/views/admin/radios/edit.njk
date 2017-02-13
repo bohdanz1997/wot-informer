@@ -1,0 +1,16 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Edit Radio', 'modalEdit') }}
+
+{{ form.open({
+  action: 'RadiosController.update',
+  params: {id: 0},
+  class: 'form-horizontal',
+  id: 'formEdit'
+}) }}
+
+{% include "admin/radios/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnEdit')}}

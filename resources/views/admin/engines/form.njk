@@ -1,0 +1,62 @@
+{% if old('errors') %}
+  <div class="alert alert-danger">
+    {% for error in old('errors') %}
+      <li>{{ error.message }}</li>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{{ csrfField }}
+
+<div class="form-group">
+  {{ form.label('level', 'Level', { class: 'col-md-3 control-label' }) }}
+  <div class="col-md-6">
+    {{ form.text('level', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{ form.label('name', 'Name', { class: 'col-md-3 control-label' }) }}
+  <div class="col-md-6">
+    {{ form.text('name', "", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{ form.label('nation_id', 'Nation', { class: 'col-md-3 control-label' }) }}
+  <div class="col-md-6">
+    <select class="form-control" id="nation_id" name="nation_id">
+      {% for nation in nations %}
+        <option value={{nation.id}}>{{nation.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  {{ form.label('power', 'Power', { class: 'col-md-3 control-label' }) }}
+  <div class="col-md-6">
+    {{ form.text('power', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{ form.label('chance_of_fire', 'Chance Of Fire', { class: 'col-md-3 control-label' }) }}
+  <div class="col-md-6">
+    {{ form.text('chance_of_fire', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{ form.label('weight', 'Weight', { class: 'col-md-3 control-label' }) }}
+  <div class="col-md-6">
+    {{ form.text('weight', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group">
+  {{ form.label('price', 'Price', { class: 'col-md-3 control-label' }) }}
+  <div class="col-md-6">
+    {{ form.text('price', "0", { class: 'form-control' }) }}
+  </div>
+</div>

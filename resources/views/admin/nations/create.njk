@@ -1,0 +1,11 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New Nation', 'modalCreate') }}
+
+{{ form.open({action: 'NationsController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/nations/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

@@ -1,0 +1,13 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New Body', 'modalCreate', true) }}
+
+{{ form.open({action: 'BodiesController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/bodies/form" %}
+
+<div class="clearfix"></div>
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

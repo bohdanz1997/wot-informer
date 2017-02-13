@@ -1,0 +1,11 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New Radio', 'modalCreate') }}
+
+{{ form.open({action: 'RadiosController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/radios/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

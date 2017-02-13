@@ -1,0 +1,16 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Edit Gun', 'modalEdit') }}
+
+{{ form.open({
+  action: 'GunsController.update',
+  params: {id: 0},
+  class: 'form-horizontal',
+  id: 'formEdit'
+}) }}
+
+{% include "admin/guns/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnEdit')}}

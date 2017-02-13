@@ -1,0 +1,63 @@
+{% extends "admin" %}
+
+{% block content %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    All Bodies
+  </div>
+  <div class="panel-body">
+    <button type="button" class="btn btn-primary" data-toggle="modal"
+    data-target="#modalCreate"
+    onclick='initData()'>
+      + Add Body
+    </button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Level</th>
+          <th>Price</th>
+          <th>Nation</th>
+          <th>Vehicle</th>
+          <th>Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for body in bodies %}
+          <tr>
+            <td>{{ body.name }}</td>
+            <td>{{ body.level }}</td>
+            <td>{{ body.price }}</td>
+            <td>{{ body.nation.name }}</td>
+            <td>{{ body.vehicle.name }}</td>
+            <td class="col-sm-3">
+              <ul class="list-inline col-sm-12">
+                <li>
+                  <button
+                    class="btn btn-success btn-sm"
+                    onclick='editModel({{body.id}}, "bodies")'
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#modalEdit">
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  {{ form.open({action: 'BodiesController.destroy', params: {id: body.id}, class: 'form_delete' }) }}
+                    {{ csrfField }}
+                    {{ form.submit('Delete', 'delete', { class: "btn btn-danger btn-sm" }) }}
+                  {{ form.close() }}
+              </li>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% include "admin/bodies/create" %}
+{% include "admin/bodies/edit" %}
+
+{% endblock %}

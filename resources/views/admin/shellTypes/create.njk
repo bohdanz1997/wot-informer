@@ -1,0 +1,11 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New ShellType', 'modalCreate') }}
+
+{{ form.open({action: 'ShellTypesController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/shellTypes/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

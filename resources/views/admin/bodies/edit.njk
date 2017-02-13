@@ -1,0 +1,18 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Edit Body', 'modalEdit', true) }}
+
+{{ form.open({
+  action: 'BodiesController.update',
+  params: {id: 0},
+  class: 'form-horizontal',
+  id: 'formEdit'
+}) }}
+
+{% include "admin/bodies/form" %}
+
+<div class="clearfix"></div>
+
+{{ form.close() }}
+
+{{ modalEnd('btnEdit')}}

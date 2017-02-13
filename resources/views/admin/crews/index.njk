@@ -1,0 +1,57 @@
+{% extends "admin" %}
+
+{% block content %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    All Crews
+  </div>
+  <div class="panel-body">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">
+      + Add Crew
+    </button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for crew in crews %}
+          <tr>
+            <td class="col-sm-1">{{ crew.id }}</td>
+            <td>{{ crew.name }}</td>
+            <td>{{ crew.description }}</td>
+            <td class="col-sm-3">
+              <ul class="list-inline col-sm-12">
+                <li>
+                  <button
+                    class="btn btn-success btn-sm"
+                    onclick='editModel({{crew.id}}, "crews")'
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#modalEdit">
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  {{ form.open({action: 'CrewsController.destroy', params: {id: crew.id}, class: 'form_delete' }) }}
+                    {{ csrfField }}
+                    {{ form.submit('Delete', 'delete', { class: "btn btn-danger btn-sm" }) }}
+                  {{ form.close() }}
+              </li>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% include "admin/crews/create" %}
+{% include "admin/crews/edit" %}
+
+{% endblock %}

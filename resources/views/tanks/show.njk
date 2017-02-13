@@ -1,0 +1,361 @@
+{% extends "master" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span class="tank-name-big">{{body.name}}</span>
+      </div>
+      <div class="panel-body">
+        <div class="pull-left tank-icon">
+         <img class="" src="/assets/img/{{body.icon}}" alt="Лого">
+       </div>
+        {{body.description}}
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Модули
+      </div>
+      <div class="panel-body">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+          <img width="50" height="50" src="/assets/img/Ico_gun_alpha.png" alt="">
+            <span class="module-name">Орудия</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="text-muted">
+                  <th>Ур.</th>
+                  <th>Орудие</th>
+                  <th>Пробитие</th>
+                  <th>Урон</th>
+                  <th>Перезарядка</th>
+                  <th>Разброс</th>
+                  <th>Вес</th>
+                  <th>Цена</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for gun in body.guns %}
+                <tr>
+                  <td>{{gun.level}}</td>
+                  <td>{{gun.name}}</td>
+                  <td>{{gun.penetration}}</td>
+                  <td>{{gun.damage}}</td>
+                  <td>{{gun.aim_time}}</td>
+                  <td>{{gun.accuracy}}</td>
+                  <td>{{gun.weight}}</td>
+                  <td>{{gun.price}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <img width="50" height="50" src="/assets/img/Ico_turret_alpha.png" alt="">
+            <span class="module-name">Башни</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="text-muted">
+                  <th>Ур.</th>
+                  <th>Башня</th>
+                  <th>Броня</th>
+                  <th>Поворот</th>
+                  <th>Обзор</th>
+                  <th>Вес</th>
+                  <th>Цена</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for turret in body.turrets %}
+                <tr>
+                  <td>{{turret.level}}</td>
+                  <td>{{turret.name}}</td>
+                  <td>{{turret.armor}}</td>
+                  <td>{{turret.turret_traverse}}</td>
+                  <td>{{turret.view_range}}</td>
+                  <td>{{turret.weight}}</td>
+                  <td>{{turret.price}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <img width="50" height="50" src="/assets/img/Ico_engine_alpha.png" alt="">
+            <span class="module-name">Двигатели</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="text-muted">
+                  <th>Ур.</th>
+                  <th>Двигатель</th>
+                  <th>Мощность</th>
+                  <th>Вероятность пожара</th>
+                  <th>Вес</th>
+                  <th>Цена</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for engine in body.engines %}
+                <tr>
+                  <td>{{engine.level}}</td>
+                  <td>{{engine.name}}</td>
+                  <td>{{engine.power}}</td>
+                  <td>{{engine.chance_of_fire}}</td>
+                  <td>{{engine.weight}}</td>
+                  <td>{{engine.price}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <img width="50" height="50" src="/assets/img/Ico_radio_alpha.png" alt="">
+            <span class="module-name">Рациостанции</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="text-muted">
+                  <th>Ур.</th>
+                  <th>Радиостанция</th>
+                  <th>Дальность связи</th>
+                  <th>Вес</th>
+                  <th>Цена</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for radio in body.radios %}
+                <tr>
+                  <td>{{radio.level}}</td>
+                  <td>{{radio.name}}</td>
+                  <td>{{radio.signal_range}}</td>
+                  <td>{{radio.weight}}</td>
+                  <td>{{radio.price}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <img width="50" height="50" src="/assets/img/Ico_chassis_alpha.png" alt="">
+            <span class="module-name">Ходовая часть</span>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr class="text-muted">
+                  <th>Ур.</th>
+                  <th>Ходовая часть</th>
+                  <th>Макс. нагрузка</th>
+                  <th>Скорость поворота</th>
+                  <th>Вес</th>
+                  <th>Цена</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for suspension in body.suspensions %}
+                <tr>
+                  <td>{{suspension.level}}</td>
+                  <td>{{suspension.name}}</td>
+                  <td>{{suspension.load_limit}}</td>
+                  <td>{{suspension.traverse_speed}}</td>
+                  <td>{{suspension.weight}}</td>
+                  <td>{{suspension.price}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Совместимое оборудование
+        </div>
+        <div class="details-wrap">
+          {% for item in equipment %}
+            <div class="details-item">
+              <img src="/assets/img/{{item.icon}}" alt="">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Совместимое снаряжение
+        </div>
+        <div class="details-wrap">
+          {% for item in consumables %}
+            <div class="details-item">
+              <img src="/assets/img/{{item.icon}}" alt="">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <span class="tank-name-small">{{body.name}}</span>
+      </div>
+      <div class="panel-body">
+        <div class="text-center">
+          <img src="/assets/img/{{body.image}}" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        Общие данные
+      </div>
+      <ul class="list-group">
+       <li class="list-group-item">
+         Цена
+         <span class="pull-right">{{body.price}}
+           кр
+         </span>
+       </li>
+       <li class="list-group-item">
+         Прочность
+         <span class="pull-right">{{body.health}}
+           HP
+         </span>
+       </li>
+       <li class="list-group-item">
+         Маса
+         <span class="pull-right">0
+           т
+         </span>
+       </li>
+       <li class="list-group-item">
+         Обзор
+         <span class="pull-right">{{body.turrets[0].view_range}}
+           м
+         </span>
+       </li>
+       <li class="list-group-item">
+         Дальность связи
+         <span class="pull-right">{{body.radios[0].signal_range}}
+           м
+         </span>
+       </li>
+     </ul>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        Экипаж
+      </div>
+      <ul class="list-group">
+        {% for crew in body.crews %}
+        <li class="list-group-item">{{crew.name}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        Подвижность
+      </div>
+      <div class="list-group">
+        <div class="list-group-item">
+          Мощность двигателя
+          <span class="pull-right">{{body.engines[0].power}}
+            л.с.
+          </span>
+        </div>
+        <div class="list-group-item">
+          Макс. скорость
+          <span class="pull-right">{{body.speed}}
+            км/ч
+          </span>
+        </div>
+        <div class="list-group-item">
+          Поворотливость
+          <span class="pull-right">{{body.suspensions[0].traverse_speed}}
+            град/с
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        Бронирование
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          Корпус
+          <span class="pull-right">{{body.armor}}
+            мм
+          </span>
+        </li>
+        <li class="list-group-item">
+          Башня
+          <span class="pull-right">{{body.turrets[0].armor}}
+            мм
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        Вооружение
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          Орудие
+          <span class="pull-right">{{body.guns[0].name}}</span>
+        </li>
+        <li class="list-group-item">
+          Урон
+          <span class="pull-right">{{body.guns[0].damage}}
+            HP
+          </span>
+        </li>
+        <li class="list-group-item">
+          Бронепробиваемость
+          <span class="pull-right">{{body.guns[0].penetration}}
+            мм
+          </span>
+        </li>
+        <li class="list-group-item">
+          Скорострельность
+          {% set rate = (60 / body.guns[0].aim_time) | round(2, 'floor') %}
+          <span class="pull-right">{{rate}}
+            выстр/мин
+          </span>
+        </li>
+        <li class="list-group-item">
+          Урон в минуту
+          <span class="pull-right">
+            {{ (body.guns[0].ammos[0].damage * rate) | round}}
+            HP/мин
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

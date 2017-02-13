@@ -1,0 +1,65 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  -webkit-font-feature-settings: "kern", "liga", "pnum";
+  -moz-font-feature-settings: "kern", "liga", "pnum";
+  -ms-font-feature-settings: "kern", "liga", "pnum";
+  font-feature-settings: "kern", "liga", "pnum";
+  -webkit-font-smoothing: antialiased;
+  font-weight: lighter;
+  background: #ffffff;
+}
+
+.table-responsive {
+    max-width:100%;
+}
+
+.tank-name-small {
+  font-size: 20px;
+}
+
+.tank-name-big {
+  font-size: 30px;
+}
+
+.module-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.file-wrapper {
+  height: 80px;
+}
+
+.remove-btn {
+  position: absolute;
+  right: 15px;
+  top: 0;
+}
+
+.details-wrap {
+  padding-top: 15px;
+  padding-left: 5px;
+}
+
+.details-item {
+  width: 64px;
+  height: 64px;
+  display: inline-block;
+  text-align: center;
+}
+
+.tank-icon {
+  margin-right: 20px;
+}
+
+.panel-heading-fix {
+  border-top: 1px solid transparent;
+}
+
+.nation-wrapper {
+  margin-top: 20px;
+}
+
+.nation-wrapper > p {
+  margin-top: 5px;
+}

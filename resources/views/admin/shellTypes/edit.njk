@@ -1,0 +1,16 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Edit ShellType', 'modalEdit') }}
+
+{{ form.open({
+  action: 'ShellTypesController.update',
+  params: {id: 0},
+  class: 'form-horizontal',
+  id: 'formEdit'
+}) }}
+
+{% include "admin/shellTypes/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnEdit')}}

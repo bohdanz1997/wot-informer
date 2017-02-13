@@ -1,0 +1,43 @@
+{% extends "admin" %}
+
+{% block content %}
+
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      General
+    </div>
+    <div class="panel-body">
+      <div class="list-group">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Level</th>
+              <th>Price</th>
+              <th>Nation</th>
+              <th>Vehicle</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for body in bodies %}
+              <tr>
+                <td>{{ body.name }}</td>
+                <td>{{ body.level }}</td>
+                <td>{{ body.price }}</td>
+                <td>{{ body.nation.name }}</td>
+                <td>{{ body.vehicle.name }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="/admin/guns" class="list-group-item">
+          <span class="badge">count</span>
+          Guns
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

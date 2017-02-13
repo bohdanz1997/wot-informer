@@ -1,0 +1,16 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Upload New File', 'modalCreate') }}
+
+{{ form.open({action: 'FilesController.store', files: true, class: 'form-horizontal dropzone', id: 'formCreate'}) }}
+
+{{ csrfField }}
+
+<div class="fallback">
+    {{ form.file('file', { class: 'form-control' }) }}
+</div>
+
+{{ form.close() }}
+
+
+{{ modalEnd('btnCreate')}}

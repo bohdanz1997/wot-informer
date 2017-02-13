@@ -1,0 +1,55 @@
+{% extends "admin" %}
+
+{% block content %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    All Nations
+  </div>
+  <div class="panel-body">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">
+      + Add Nation
+    </button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for nation in nations %}
+          <tr>
+            <td class="col-sm-1">{{ nation.id }}</td>
+            <td>{{ nation.name }}</td>
+            <td class="col-sm-3">
+              <ul class="list-inline col-sm-12">
+                <li>
+                  <button
+                    class="btn btn-success btn-sm"
+                    onclick='editModel({{nation.id}}, "nations")'
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#modalEdit">
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  {{ form.open({action: 'NationsController.destroy', params: {id: nation.id}, class: 'form_delete' }) }}
+                    {{ csrfField }}
+                    {{ form.submit('Delete', 'delete', { class: "btn btn-danger btn-sm" }) }}
+                  {{ form.close() }}
+              </li>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% include "admin/nations/create" %}
+{% include "admin/nations/edit" %}
+
+{% endblock %}

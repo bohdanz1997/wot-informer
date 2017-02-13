@@ -1,0 +1,11 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New Gun', 'modalCreate') }}
+
+{{ form.open({action: 'GunsController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/guns/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

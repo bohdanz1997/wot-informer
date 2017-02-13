@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="/assets/css/bootstrap-simplex.css">
+  <link rel="stylesheet" href="/assets/css/simple-sidebar.css">
+  <link rel="stylesheet" href="/style.css">
+
+  <title>Wot Informer</title>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+          <div class="navbar-header">
+
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                  <span class="sr-only">Toggle Navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="/">
+                  Wot Informer
+              </a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="app-navbar-collapse">
+              <!-- Left Side Of Navbar -->
+
+
+              <!-- Right Side Of Navbar -->
+              <ul class="nav navbar-nav navbar-right">
+                  <!-- Authentication Links -->
+                  {% if currentUser %}
+                    <li><a href="/admin">Admin</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  {% else %}
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                  {% endif %}
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/jquery.js"></script>
+  <script src="/assets/js/bootstrap.js"></script>
+
+</body>
+</html>

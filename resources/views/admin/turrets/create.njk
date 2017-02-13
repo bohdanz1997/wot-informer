@@ -1,0 +1,11 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New Turret', 'modalCreate') }}
+
+{{ form.open({action: 'TurretsController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/turrets/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

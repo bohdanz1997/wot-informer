@@ -1,0 +1,168 @@
+{% if old('errors') %}
+  <div class="alert alert-danger">
+    {% for error in old('errors') %}
+      <li>{{ error.message }}</li>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{{ csrfField }}
+
+<div class="form-group col-md-4">
+  {{ form.label('name', 'Name', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    {{ form.text('name', "", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('level', 'Level', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    {{ form.text('level', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('price', 'Price', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    {{ form.text('price', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('speed', 'Speed', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    {{ form.text('speed', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('health', 'Health', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    {{ form.text('health', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('armor', 'Armor', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    {{ form.text('armor', "0", { class: 'form-control' }) }}
+  </div>
+</div>
+
+<div class="form-group col-md-3">
+  {{ form.label('image', 'Image', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select class="form-control" name="image" id="image">
+      {% for image in files %}
+        <option value={{image.name}}>{{image.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-3">
+  {{ form.label('icon', 'Icon', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select class="form-control" name="icon" id="icon">
+      {% for image in files %}
+        <option value={{image.name}}>{{image.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-3">
+  {{ form.label('nation_id', 'Nation', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select class="form-control" name="nation_id" id="nation_id">
+      {% for nation in nations %}
+        <option value={{nation.id}}>{{nation.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-3">
+  {{ form.label('vehicle_id', 'Vehicle', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select class="form-control" name="vehicle_id" id="vehicle_id">
+      {% for vehicle in vehicles %}
+        <option value={{vehicle.id}}>{{vehicle.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('guns', 'Guns', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select multiple class="form-control" name="guns[]" id="guns">
+      {% for gun in guns %}
+        <option value={{gun.id}}>{{gun.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('turrets', 'Turrets', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select multiple class="form-control" name="turrets[]" id="turrets">
+      {% for turret in turrets %}
+        <option value={{turret.id}}>{{turret.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('engines', 'Engines', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select multiple class="form-control" name="engines[]" id="engines">
+      {% for engine in engines %}
+        <option value={{engine.id}}>{{engine.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('radios', 'Radios', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select multiple class="form-control" name="radios[]" id="radios">
+      {% for radio in radios %}
+        <option value={{radio.id}}>{{radio.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('suspensions', 'Suspensions', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select multiple class="form-control" name="suspensions[]" id="suspensions">
+      {% for suspension in suspensions %}
+        <option value={{suspension.id}}>{{suspension.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-4">
+  {{ form.label('crews', 'Crews', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    <select multiple class="form-control" name="crews[]" id="crews">
+      {% for crew in crews %}
+        <option value={{crew.id}}>{{crew.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+<div class="form-group col-md-12">
+  {{ form.label('description', 'Description', { class: 'col-md-3' }) }}
+  <div class="col-md-12">
+    {{ form.textarea('description', "", { class: 'form-control', rows: 2 }) }}
+  </div>
+</div>

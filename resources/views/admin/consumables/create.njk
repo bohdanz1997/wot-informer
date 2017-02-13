@@ -1,0 +1,11 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New Consumable', 'modalCreate') }}
+
+{{ form.open({action: 'ConsumablesController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/consumables/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

@@ -1,0 +1,11 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New Engine', 'modalCreate') }}
+
+{{ form.open({action: 'EnginesController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/engines/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

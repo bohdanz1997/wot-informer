@@ -1,0 +1,11 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Create New Suspension', 'modalCreate') }}
+
+{{ form.open({action: 'SuspensionsController.store', class: 'form-horizontal', id: 'formCreate'}) }}
+
+{% include "admin/suspensions/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnCreate')}}

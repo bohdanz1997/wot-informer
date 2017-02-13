@@ -1,0 +1,53 @@
+{% extends "master" %}
+
+{% block content %}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Register</div>
+    <div class="panel-body">
+      {{ form.open({action: 'UsersController.register', class: 'form-horizontal'}) }}
+
+      {% if old('errors') %}
+        <div class="alert alert-danger">
+          {% for error in old('errors') %}
+            <li>
+              {{ error.message }}
+            </li>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {{ csrfField }}
+
+      <div class="form-group">
+        {{ form.label('username', 'Enter username', { class: 'col-md-4 control-label' }) }}
+        <div class="col-md-6">
+          {{ form.text('username', "", { class: 'form-control' }) }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        {{ form.label('email', 'Enter email', { class: 'col-md-4 control-label' }) }}
+        <div class="col-md-6">
+          {{ form.text('email', "", { class: 'form-control' }) }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        {{ form.label('password', 'Enter password', { class: 'col-md-4 control-label' }) }}
+        <div class="col-md-6">
+          {{ form.text('password', "", { class: 'form-control' }) }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-6 col-md-offset-4">
+          {{ form.submit('Register', 'register', { class: 'btn btn-success' }) }}
+        </div>
+      </div>
+
+      {{ form.close() }}
+    </div>
+  </div>
+
+{% endblock %}

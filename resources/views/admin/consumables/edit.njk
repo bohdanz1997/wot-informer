@@ -1,0 +1,16 @@
+{% from 'macros/modal' import modalBegin, modalEnd %}
+
+{{ modalBegin('Edit Consumable', 'modalEdit') }}
+
+{{ form.open({
+  action: 'ConsumablesController.update',
+  params: {id: 0},
+  class: 'form-horizontal',
+  id: 'formEdit'
+}) }}
+
+{% include "admin/consumables/form" %}
+
+{{ form.close() }}
+
+{{ modalEnd('btnEdit')}}

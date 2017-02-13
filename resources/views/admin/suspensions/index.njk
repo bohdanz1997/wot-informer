@@ -1,0 +1,64 @@
+{% extends "admin" %}
+
+{% block content %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    All Suspensions
+  </div>
+  <div class="panel-body">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">
+      + Add Suspension
+    </button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Level</th>
+          <th>Nation</th>
+          <th>Weight</th>
+          <th>Price</th>
+          <th>Load Limit</th>
+          <th>Traverse Speed</th>
+          <th>Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for suspension in suspensions %}
+          <tr>
+            <td>{{ suspension.name }}</td>
+            <td>{{ suspension.level }}</td>
+            <td>{{ suspension.nation.name }}</td>
+            <td>{{ suspension.weight }}</td>
+            <td>{{ suspension.price }}</td>
+            <td>{{ suspension.load_limit }}</td>
+            <td>{{ suspension.traverse_speed }}</td>
+            <td class="col-sm-3">
+              <ul class="list-inline col-sm-12">
+                <li>
+                  <button
+                    class="btn btn-success btn-sm"
+                    onclick='editModel({{suspension.id}}, "suspensions")'
+                     type="button" data-toggle="modal"
+                     data-target="#modalEdit">
+                    Edit
+                  </button>
+                </li>
+                <li>
+                  {{ form.open({action: 'SuspensionsController.destroy', params: {id: suspension.id}, class: 'form_delete' }) }}
+                    {{ csrfField }}
+                    {{ form.submit('Delete', 'delete', { class: "btn btn-danger btn-sm" })}}
+                  {{ form.close() }}
+              </li>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% include "admin/suspensions/create" %}
+{% include "admin/suspensions/edit" %}
+
+{% endblock %}

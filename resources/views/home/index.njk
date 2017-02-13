@@ -1,0 +1,101 @@
+{% extends "master" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-body">
+       <div class="pull-left tank-icon">
+        <img class="" src="/assets/img/GamePromo_World_of_Tanks.png" alt="Лого">
+      </div>
+      <h3>World of Tanks</h3>
+      <p>
+        World of Tanks — массовая многопользовательская онлайн-игра, полностью посвящённая бронированным машинам середины XX века. У игроков есть возможность плечом к плечу сражаться с поклонниками стальных гигантов со всех уголков планеты, отстаивая свои претензии на мировое танковое господство.
+        Продвинутая система прокачки и развития позволит вам испытать любую из машин, представленных в игре. World of Tanks предлагает большой выбор машин. Нравится ли вам изматывать противника на юрких лёгких танках, совершать неистовые прорывы на универсальных средних, испепелять врагов исполинскими «тяжами» или вы желаете стать первоклассным снайпером, управляя дальнобойной артиллерией, — машина любого класса может быть поистине смертоносным орудием в руках настоящего профессионала.
+        В World of Tanks играть интересно и новичку и опытному игроку. Однако даже самые сильные игроки не смогут добиться успеха в одиночку. В World of Tanks всё решает коллектив, а победа достигается за счёт слаженной работы команды, где каждому игроку отводится своя роль. Для подробного изучения правил и стратегий игры энциклопедия World of Tanks Informer станет помощником. Играй и выйди победителем!
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Техника по нациям
+    </div>
+    <div class="panel-body">
+      {% for nation in nations %}
+        <div class="col-md-3 col-sm-3 col-xs-4">
+          <div class="text-center nation-wrapper">
+            <a href="/nations/{{nation.id}}">
+              <img src="/assets/img/{{nation.icon}}" alt="Нация">
+              <p>{{nation.name}}</p>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="panel-heading panel-heading-fix">
+      Техника по типам
+    </div>
+    <div class="panel-body">
+        {% for vehicle in vehicles %}
+          <div class="col-md-4 col-sm-4 col-xs-6 text-center">
+            <a href="/vehicles/{{ vehicle.id }}">
+              <img src="/assets/img/{{ vehicle.icon }}" alt="Тип техники">
+              <p>{{vehicle.name}}</p>
+            </a>
+          </div>
+        {% endfor %}
+    </div>
+    <div class="panel-heading panel-heading-fix">
+      Модули
+    </div>
+    <div class="panel-body">
+      <div class="btn-group btn-group-justified">
+        <div class="btn-group">
+          <div class="col-sm-12 text-center">
+            <a href="/guns">
+              <img src="/assets/img/Ico_gun_alpha.png" alt="Модуль">
+              <p>Орудия</p>
+            </a>  
+          </div>
+        </div>
+        <div class="btn-group">
+          <div class="col-sm-12 text-center">
+            <a href="/turrets">
+              <img src="/assets/img/Ico_turret_alpha.png" alt="Модуль">
+              <p>Башни</p>
+            </a> 
+          </div>
+        </div>
+        <div class="btn-group">
+          <div class="col-sm-12 text-center">
+            <a href="/engines">
+              <img src="/assets/img/Ico_engine_alpha.png" alt="Модуль">
+              <p>Двигатели</p>
+            </a> 
+          </div>
+        </div>
+        <div class="btn-group">
+          <div class="col-sm-12 text-center">
+            <a href="/radios">
+              <img src="/assets/img/Ico_radio_alpha.png" alt="Модуль">
+              <p>Радиостанции</p>
+            </a> 
+          </div>
+        </div>
+        <div class="btn-group">
+          <div class="col-sm-12 text-center">
+            <a href="/suspensions">
+              <img src="/assets/img/Ico_chassis_alpha.png" alt="Модуль">
+              <p>Ходовые</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
