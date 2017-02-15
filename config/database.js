@@ -48,10 +48,10 @@ module.exports = {
   mysql: {
     client: 'mysql',
     connection: {
-      host: Env.get('DB_HOST', 'us-cdbr-iron-east-04.cleardb.net'),
-      user: Env.get('DB_USER', 'b6aa87907c710c'),
-      password: Env.get('DB_PASSWORD', '3a90f329 '),
-      database: Env.get('DB_DATABASE', 'heroku_4fe58427b46a027')
+      host: Env.get('DB_HOST', 'localhost'),
+      user: Env.get('DB_USER', 'root'),
+      password: Env.get('DB_PASSWORD', ''),
+      database: Env.get('DB_DATABASE', 'wot')
     }
   },
 
@@ -71,7 +71,7 @@ module.exports = {
       host: Env.get('DB_HOST', 'localhost'),
       user: Env.get('DB_USER', 'root'),
       password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis')
+      database: Env.get('DB_DATABASE', 'wot')
     }
   }
 
