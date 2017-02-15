@@ -68,10 +68,10 @@ module.exports = {
   pg: {
     client: 'pg',
     connection: {
-      host: Env.get('DB_HOST', 'ec2-50-19-89-124.compute-1.amazonaws.com'),
-      user: Env.get('DB_USER', 'ljbhckzwysdraw'),
-      password: Env.get('DB_PASSWORD', 'b63398495b6a51b1b0d06227dc6588ce16c3711b113f8b479f669acbace04309'),
-      database: Env.get('DB_DATABASE', 'dejh3n9go7q69v')
+      host: Env.get('DB_HOST', 'ec2-54-163-230-198.compute-1.amazonaws.com'),
+      user: Env.get('DB_USER', 'gssakcimjgrhvo'),
+      password: Env.get('DB_PASSWORD', 'a7f7cf9a326fc75adc52572944bcfb2edf4cc044fe78620e520eee49e6c98ae1'),
+      database: Env.get('DB_DATABASE', 'd6jtr143n9pm3u')
     }
   }
 
