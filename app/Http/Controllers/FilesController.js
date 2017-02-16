@@ -26,7 +26,7 @@ class FilesController {
       return
     }
     const fileName = `${new Date().getTime()}.${file.extension()}`;
-
+    
     yield file.move(Helpers.publicPath('assets/img/'), file.file.name)
      if (!file.moved()) {
        response.badRequest(file.errors())
