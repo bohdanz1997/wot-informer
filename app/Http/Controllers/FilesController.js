@@ -39,11 +39,11 @@ class FilesController {
       name: file.file.name,
       path: fileName
     })
-    //response.ok("file uploaded successfully")
     fs.rename(file.file.path, Helpers.publicPath('assets/img/') + file.file.name, function (err) {
       if (err) {
         response.ok(err)
       }
+    response.ok("file uploaded successfully")
     })
   }
 
