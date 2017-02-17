@@ -25,26 +25,19 @@ class FilesController {
       response.redirect('/admin/files')
       return
     }
-    console.log(file.file.path)
-    console.log(Helpers.publicPath('assets/img/') + file.file.name)
 
     const fileName = `${new Date().getTime()}.${file.extension()}`
-    /*yield file.move(Helpers.publicPath('assets/img/'), file.file.name)
+    yield file.move(Helpers.publicPath('assets/img/'), file.file.name)
      if (!file.moved()) {
        response.badRequest(file.errors())
-       return
-     }*/
+     }
 
     yield File.create({
       name: file.file.name,
       path: fileName
     })
-    fs.rename(file.file.path, Helpers.publicPath('assets/img/') + file.file.name, function (err) {
-      if (err) {
-        response.ok(err)
-      }
-    response.ok("file uploaded successfully")
-    })
+
+    response.ok("files upload successfully")
   }
 
   * destroy(request, response) {
