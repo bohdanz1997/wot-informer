@@ -1,6 +1,8 @@
 'use strict'
 
 const Crew = use('App/Model/Crew')
+const Validator = use('Validator')
+
 
 class CrewsController {
 
@@ -11,7 +13,7 @@ class CrewsController {
       crews: crews.toJSON()
     })
   }
-  
+
   * get(request, response) {
     const id = request.params('id')
     const crew = yield Crew.find(id.id)
@@ -21,21 +23,33 @@ class CrewsController {
 
   * store(request, response) {
     const data = request.only('name', 'description')
+    const validation = yield Validator.validate(data, Crew.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield Crew.create(data)
 
-    response.redirect('/admin/crews')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.only('name', 'description')
+    const validation = yield Validator.validate(data, Crew.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     const crew = yield Crew.find(id.id)
     crew.fill(data)
     yield crew.save()
 
-    response.redirect('/admin/crews')
+    response.ok("success")
   }
 
   * destroy(request, response) {

@@ -5,7 +5,7 @@ const Body = use('App/Model/Body')
 
 class AdminController {
   * index(request, response) {
-    const bodies = yield Body.all()
+    const bodies = yield Body.query().with('nation', 'vehicle').fetch()
 
     yield response.sendView('admin/index', {
       bodies: bodies.toJSON()

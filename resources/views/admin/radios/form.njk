@@ -1,10 +1,4 @@
-{% if old('errors') %}
-  <div class="alert alert-danger">
-    {% for error in old('errors') %}
-      <li>{{ error.message }}</li>
-    {% endfor %}
-  </div>
-{% endif %}
+<div class="alert alert-danger display-none" id="error-messages"></div>
 
 {{ csrfField }}
 

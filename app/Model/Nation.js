@@ -4,6 +4,12 @@ const Lucid = use('Lucid')
 
 class Nation extends Lucid {
 
+  static get rules() {
+    return {
+      name: 'required'
+    }
+  }
+
   bodies() {
     return this.hasMany('App/Model/Body')
   }

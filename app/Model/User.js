@@ -7,7 +7,7 @@ class User extends Lucid {
 
   static boot () {
     super.boot()
-
+    
     /**
      * Hashing password before storing to the
      * database.

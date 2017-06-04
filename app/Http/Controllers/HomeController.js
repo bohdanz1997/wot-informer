@@ -63,7 +63,7 @@ class HomeController {
   }
 
   * guns(request, response) {
-    const guns = yield Gun.all()
+    const guns = yield Gun.query().with('nation').fetch()
 
     yield response.sendView('home/guns', {
       guns: guns.toJSON()
@@ -71,7 +71,7 @@ class HomeController {
   }
 
   * turrets(request, response) {
-    const turrets = yield Turret.all()
+    const turrets = yield Turret.query().with('nation').fetch()
 
     yield response.sendView('home/turrets', {
       turrets: turrets.toJSON()
@@ -79,7 +79,7 @@ class HomeController {
   }
 
   * engines(request, response) {
-    const engines = yield Engine.all()
+    const engines = yield Engine.query().with('nation').fetch()
 
     yield response.sendView('home/engines', {
       engines: engines.toJSON()
@@ -87,7 +87,7 @@ class HomeController {
   }
 
   * radios(request, response) {
-    const radios = yield Radio.all()
+    const radios = yield Radio.query().with('nation').fetch()
 
     yield response.sendView('home/radios', {
       radios: radios.toJSON()
@@ -95,7 +95,7 @@ class HomeController {
   }
 
   * suspensions(request, response) {
-    const suspensions = yield Suspension.all()
+    const suspensions = yield Suspension.query().with('nation').fetch()
 
     yield response.sendView('home/suspensions', {
       suspensions: suspensions.toJSON()

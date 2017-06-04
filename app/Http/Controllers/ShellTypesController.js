@@ -1,6 +1,7 @@
 'use strict'
 
 const ShellType = use('App/Model/ShellType')
+const Validator = use('Validator')
 
 class ShellTypesController {
 
@@ -21,21 +22,33 @@ class ShellTypesController {
 
   * store(request, response) {
     const data = request.only('name')
+    const validation = yield Validator.validate(data, ShellType.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield ShellType.create(data)
 
-    response.redirect('/admin/shellTypes')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.only('name')
+    const validation = yield Validator.validate(data, ShellType.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     const shellType = yield ShellType.find(id.id)
-    shellType.name = data.name
+    shellType.fill(data)
     yield shellType.save()
 
-    response.redirect('/admin/shellTypes')
+    response.ok("success")
   }
 
   * destroy(request, response) {

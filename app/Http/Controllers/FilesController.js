@@ -26,18 +26,24 @@ class FilesController {
       return
     }
 
-    const fileName = `${new Date().getTime()}.${file.extension()}`
-    yield file.move(Helpers.publicPath('assets/img/'), file.file.name)
-     if (!file.moved()) {
+    const found = File.findBy('name', file.file.name)
+
+    if (found.name) {
+      response.badRequest("file already exists " + file.file.name)
+    } else {
+      const fileName = `${new Date().getTime()}.${file.extension()}`
+      yield file.move(Helpers.publicPath('assets/img/'), file.file.name)
+      if (!file.moved()) {
        response.badRequest(file.errors())
-     }
+      }
 
-    yield File.create({
-      name: file.file.name,
-      path: fileName
-    })
+      yield File.create({
+        name: file.file.name,
+        path: fileName
+      })
 
-    response.ok("files upload successfully")
+      response.ok('file uploaded successfully')
+    }
   }
 
   * destroy(request, response) {

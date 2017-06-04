@@ -2,6 +2,7 @@
 
 const Vehicle = use('App/Model/Vehicle')
 const File = use('App/Model/File')
+const Validator = use('Validator')
 
 class VehiclesController {
 
@@ -24,21 +25,33 @@ class VehiclesController {
 
   * store(request, response) {
     const data = request.only('name', 'icon')
+    const validation = yield Validator.validate(data, Vehicle.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield Vehicle.create(data)
 
-    response.redirect('/admin/vehicles')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.only('name', 'icon')
+    const validation = yield Validator.validate(data, Vehicle.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     const vehicle = yield Vehicle.find(id.id)
     vehicle.fill(data)
     yield vehicle.save()
 
-    response.redirect('/admin/vehicles')
+    response.ok("success")
   }
 
   * destroy(request, response) {

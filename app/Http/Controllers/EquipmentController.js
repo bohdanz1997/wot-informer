@@ -2,6 +2,8 @@
 
 const Equipment = use('App/Model/Equipment')
 const File = use('App/Model/File')
+const Validator = use('Validator')
+
 
 class EquipmentController {
 
@@ -14,7 +16,7 @@ class EquipmentController {
       files: files.toJSON()
     })
   }
-  
+
   * get(request, response) {
     const id = request.params('id')
     const equip = yield Equipment.find(id.id)
@@ -24,20 +26,33 @@ class EquipmentController {
 
   * store(request, response) {
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Equipment.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield Equipment.create(data)
 
-    response.redirect('/admin/equipment')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Equipment.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
+
     const equip = yield Equipment.find(id.id)
     equip.fill(data)
     yield equip.save()
 
-    response.redirect('/admin/equipment')
+    response.ok("success")
   }
 
   * destroy(request, response) {

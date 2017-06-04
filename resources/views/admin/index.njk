@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="col-md-6">
+<div class="col-md-8">
   <div class="panel panel-default">
     <div class="panel-heading">
       General
@@ -31,11 +31,23 @@
             {% endfor %}
           </tbody>
         </table>
-        <a href="/admin/guns" class="list-group-item">
-          <span class="badge">count</span>
-          Guns
-        </a>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="">
+      {{ form.open({action: 'FilesController.store', files: true, class: 'form-horizontal dropzone', id: 'formCreate'}) }}
+
+      {{ csrfField }}
+
+      <div class="fallback">
+          {{ form.file('file', { class: 'form-control' }) }}
+      </div>
+
+      {{ form.close() }}
     </div>
   </div>
 </div>

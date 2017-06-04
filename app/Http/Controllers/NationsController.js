@@ -2,6 +2,7 @@
 
 const Nation = use('App/Model/Nation')
 const File = use('App/Model/File')
+const Validator = use('Validator')
 
 class NationsController {
 
@@ -14,7 +15,7 @@ class NationsController {
       files: files.toJSON()
     })
   }
-  
+
   * get(request, response) {
     const id = request.params('id')
     const nation = yield Nation.find(id.id)
@@ -24,21 +25,32 @@ class NationsController {
 
   * store(request, response) {
     const data = request.only('name', 'icon')
+    const validation = yield Validator.validate(data, Nation.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield Nation.create(data)
 
-    response.redirect('/admin/nations')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.only('name', 'icon')
+    const validation = yield Validator.validate(data, Nation.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     const nation = yield Nation.find(id.id)
     nation.fill(data)
     yield nation.save()
-
-    response.redirect('/admin/nations')
+    response.ok("success")
   }
 
   * destroy(request, response) {

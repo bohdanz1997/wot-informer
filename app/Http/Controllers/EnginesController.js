@@ -2,6 +2,7 @@
 
 const Engine = use('App/Model/Engine')
 const Nation = use('App/Model/Nation')
+const Validator = use('Validator')
 
 class EnginesController {
 
@@ -25,20 +26,33 @@ class EnginesController {
 
   * store(request, response) {
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Engine.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield Engine.create(data)
 
-    response.redirect('/admin/engines')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Engine.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
+
     const engine = yield Engine.find(id.id)
     engine.fill(data)
     yield engine.save()
 
-    response.redirect('/admin/engines')
+    response.ok("success")
   }
 
   * destroy(request, response) {

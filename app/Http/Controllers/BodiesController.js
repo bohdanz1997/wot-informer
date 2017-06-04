@@ -10,6 +10,7 @@ const Radio = use('App/Model/Radio')
 const Suspension = use('App/Model/Suspension')
 const Crew = use('App/Model/Crew')
 const File = use('App/Model/File')
+const Validator = use('Validator')
 
 class BodiesController {
 
@@ -52,52 +53,52 @@ class BodiesController {
   }
 
   * store(request, response) {
-    const data = request.only(
-      'name', 'level', 'price', 'nation_id', 'vehicle_id',
-      'speed', 'health', 'description', 'armor', 'image', 'icon')
-    const guns = request.only('guns').guns
-    const turrets = request.only('turrets').turrets
-    const engines = request.only('engines').engines
-    const radios = request.only('radios').radios
-    const suspensions = request.only('suspensions').suspensions
-    const crews = request.only('crews').crews
+    const data_for_save = request.except(
+      'guns', 'turrets', 'engines', 'radios', 'suspensions', 'crews')
+    const data_for_validation = request.all()
+    const validation = yield Validator.validate(data_for_validation, Body.rules)
 
-    const body = yield Body.create(data)
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
-    yield body.guns().attach(getIdsFromData(guns))
-    yield body.turrets().attach(getIdsFromData(turrets))
-    yield body.engines().attach(getIdsFromData(engines))
-    yield body.radios().attach(getIdsFromData(radios))
-    yield body.suspensions().attach(getIdsFromData(suspensions))
-    yield body.crews().attach(getIdsFromData(crews))
+    const body = yield Body.create(data_for_save)
 
-    response.redirect('/admin/bodies')
+    yield body.guns().attach(getIdsFromData(data_for_validation['guns']))
+    yield body.turrets().attach(getIdsFromData(data_for_validation['turrets']))
+    yield body.engines().attach(getIdsFromData(data_for_validation['engines']))
+    yield body.radios().attach(getIdsFromData(data_for_validation['radios']))
+    yield body.suspensions().attach(getIdsFromData(data_for_validation['suspensions']))
+    yield body.crews().attach(getIdsFromData(data_for_validation['crews']))
+
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
-    const data = request.only(
-      'name', 'level', 'price', 'nation_id', 'vehicle_id',
-      'speed', 'health', 'description', 'armor', 'image', 'icon')
-    const guns = request.only('guns').guns
-    const turrets = request.only('turrets').turrets
-    const engines = request.only('engines').engines
-    const radios = request.only('radios').radios
-    const suspensions = request.only('suspensions').suspensions
-    const crews = request.only('crews').crews
+    const data_for_save = request.except(
+      'guns', 'turrets', 'engines', 'radios', 'suspensions', 'crews')
+    const data_for_validation = request.all()
+    const validation = yield Validator.validate(data_for_validation, Body.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     const body = yield Body.find(id.id)
-    body.fill(data)
+    body.fill(data_for_save)
     yield body.save()
 
-    yield body.guns().sync(getIdsFromData(guns))
-    yield body.turrets().sync(getIdsFromData(turrets))
-    yield body.engines().sync(getIdsFromData(engines))
-    yield body.radios().sync(getIdsFromData(radios))
-    yield body.suspensions().sync(getIdsFromData(suspensions))
-    yield body.crews().sync(getIdsFromData(crews))
+    yield body.guns().attach(getIdsFromData(data_for_validation['guns']))
+    yield body.turrets().attach(getIdsFromData(data_for_validation['turrets']))
+    yield body.engines().attach(getIdsFromData(data_for_validation['engines']))
+    yield body.radios().attach(getIdsFromData(data_for_validation['radios']))
+    yield body.suspensions().attach(getIdsFromData(data_for_validation['suspensions']))
+    yield body.crews().attach(getIdsFromData(data_for_validation['crews']))
 
-    response.redirect('/admin/bodies')
+    response.ok("success")
   }
 
   * destroy(request, response) {
@@ -124,7 +125,7 @@ class BodiesController {
 
 function getIdsFromData(data) {
   var ids = []
-  for(var i = 0; i < data.length; i++) {
+  for (var i = 0; i < data.length; i++) {
     if (data[i].id === undefined) {
       ids.push(data[i])
     } else {

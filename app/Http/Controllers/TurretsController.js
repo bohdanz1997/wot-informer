@@ -2,6 +2,7 @@
 
 const Turret = use('App/Model/Turret')
 const Nation = use('App/Model/Nation')
+const Validator = use('Validator')
 
 class TurretsController {
 
@@ -25,20 +26,33 @@ class TurretsController {
 
   * store(request, response) {
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Turret.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield Turret.create(data)
 
-    response.redirect('/admin/turrets')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Turret.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
+
     const turret = yield Turret.find(id.id)
     turret.fill(data)
     yield turret.save()
 
-    response.redirect('/admin/turrets')
+    response.ok("success")
   }
 
   * destroy(request, response) {

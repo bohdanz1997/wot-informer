@@ -2,6 +2,7 @@
 
 const Radio = use('App/Model/Radio')
 const Nation = use('App/Model/Nation')
+const Validator = use('Validator')
 
 class RadiosController {
 
@@ -25,20 +26,33 @@ class RadiosController {
 
   * store(request, response) {
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Radio.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield Radio.create(data)
 
-    response.redirect('/admin/radios')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Radio.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
+
     const radio = yield Radio.find(id.id)
     radio.fill(data)
     yield radio.save()
 
-    response.redirect('/admin/radios')
+    response.ok("success")
   }
 
   * destroy(request, response) {

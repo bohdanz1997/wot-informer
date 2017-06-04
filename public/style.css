@@ -63,3 +63,8 @@ body {
 .nation-wrapper > p {
   margin-top: 5px;
 }
+
+
+.display-none {
+  display: none;
+}

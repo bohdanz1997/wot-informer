@@ -2,6 +2,8 @@
 
 const Consumable = use('App/Model/Consumable')
 const File = use('App/Model/File')
+const Validator = use('Validator')
+
 
 class ConsumablesController {
 
@@ -24,20 +26,33 @@ class ConsumablesController {
 
   * store(request, response) {
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Consumable.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
 
     yield Consumable.create(data)
 
-    response.redirect('/admin/consumables')
+    response.ok("success")
   }
 
   * update(request, response) {
     const id = request.params('id')
     const data = request.except('_csrf', '_method')
+    const validation = yield Validator.validate(data, Consumable.rules)
+
+    if (validation.fails()) {
+      response.json(validation.messages())
+      return
+    }
+
     const consumable = yield Consumable.find(id.id)
     consumable.fill(data)
     yield consumable.save()
 
-    response.redirect('/admin/consumables')
+    response.ok("success")
   }
 
   * destroy(request, response) {
